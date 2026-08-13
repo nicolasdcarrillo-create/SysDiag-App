@@ -1,0 +1,38 @@
+name: Validate fixture
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate-fixture:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate fixture (PowerShell)
+        shell: pwsh
+        run: |
+          Write-Host "Validando fixture: Tools\fixtures\diagnostico_fixture.json"
+          if (-not (Test-Path "Tools\fixtures\diagnostico_fixture.json")) {
+            Write-Error "Fixture missing: Tools\fixtures\diagnostico_fixture.json"
+            exit 1
+          }
+          pwsh -NoProfile -File Tools\validate_fixture.ps1
+
+  run-integration-tests:
+    runs-on: windows-latest
+    needs: validate-fixture
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Run integration tests
+        run: dotnet test Tools/IntegrationTests/IntegrationTests.csproj --no-build -v minimal
+

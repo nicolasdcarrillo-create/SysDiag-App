@@ -1,6 +1,6 @@
 # SysDiag 5.7
 
-[![Compilar y probar](https://github.com/TU-USUARIO/SysDiag/actions/workflows/build.yml/badge.svg)](https://github.com/TU-USUARIO/SysDiag/actions/workflows/build.yml)
+[![Compilar y probar](https://github.com/TU-USUARIO/SysDiag/actions/workflows/build.yml/badge.svg)](https://github.com/TU-USUARIO/SysDiag/actions/workflows/build.yml) [![Validar fixture](https://github.com/TU-USUARIO/SysDiag/actions/workflows/validate-fixture.yml/badge.svg)](https://github.com/TU-USUARIO/SysDiag/actions/workflows/validate-fixture.yml)
 
 > Reemplazá `TU-USUARIO` por tu usuario real de GitHub una vez que subas el
 > repositorio — hasta entonces el badge no va a resolver a nada.
@@ -245,3 +245,16 @@ código.
 - Historial entre ejecuciones para comparar antes y después de un cambio.
 - Exportación a CSV/JSON para graficar tendencias.
 - Monitor en vivo de latencia mientras juegas, con gráfico en tiempo real.
+
+## Fixtures para desarrollo y CI
+
+Se incluye un diagnóstico real que sirve como fixture para pruebas de integración y para desarrollar la UI sin ejecutar WMI/COM. Está en:
+
+- Tools\fixtures\diagnostico_fixture.json
+
+Para validar localmente que el fixture contiene hallazgos relevantes, ejecutar (PowerShell):
+
+PS> .\Tools\validate_fixture.ps1
+
+El script devuelve código de salida 0 si la comprobación pasa. Usar este archivo como entrada para pruebas o para poblar vistas en desarrollo. Si se desea integrar pruebas xUnit en el repo, se puede añadir un proyecto de tests, pero puede requerir ajustar las propiedades de ensamblado del proyecto principal para evitar duplicidad de atributos en la compilación (GenerateAssemblyInfo).
+

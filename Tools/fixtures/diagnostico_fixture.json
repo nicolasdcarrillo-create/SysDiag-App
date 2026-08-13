@@ -1,0 +1,936 @@
+{
+  "Inicio": "2026-08-13T10:45:15.8892824-04:00",
+  "Equipo": "DESKTOP-6U6KFNO",
+  "Hallazgos": [
+    {
+      "Severity": "Bad",
+      "Area": "Red",
+      "Message": "El salto hasta el router ya son 11,8 ms.",
+      "Action": "El problema est\u00E1 dentro de tu casa, no en el proveedor: enlace inal\u00E1mbrico d\u00E9bil, saturaci\u00F3n del router o interferencia.",
+      "Modulo": "",
+      "AccionId": "",
+      "AccionTexto": "",
+      "Etiqueta": "Cr\u00EDtico"
+    },
+    {
+      "Severity": "Ok",
+      "Area": "Juego",
+      "Message": "Enlace estable hacia Riot LAN (Latam Norte) (25 ms).",
+      "Action": "",
+      "Modulo": "",
+      "AccionId": "",
+      "AccionTexto": "",
+      "Etiqueta": "Correcto"
+    },
+    {
+      "Severity": "Warn",
+      "Area": "T\u00E9rmicas",
+      "Message": "El equipo no publica temperatura por WMI.",
+      "Action": "Para lecturas por n\u00FAcleo hace falta una herramienta con driver propio, como HWiNFO64 o LibreHardwareMonitor.",
+      "Modulo": "",
+      "AccionId": "",
+      "AccionTexto": "",
+      "Etiqueta": "Atenci\u00F3n"
+    },
+    {
+      "Severity": "Warn",
+      "Area": "T\u00E9rmicas",
+      "Message": "El procesador corre al 44% de su frecuencia nominal.",
+      "Action": "Puede ser ahorro de energ\u00EDa, normal en reposo, o limitaci\u00F3n t\u00E9rmica. Vuelve a medir bajo carga para distinguirlo.",
+      "Modulo": "",
+      "AccionId": "",
+      "AccionTexto": "",
+      "Etiqueta": "Atenci\u00F3n"
+    },
+    {
+      "Severity": "Warn",
+      "Area": "Energ\u00EDa",
+      "Message": "El equipo est\u00E1 funcionando con bater\u00EDa.",
+      "Action": "En bater\u00EDa el port\u00E1til limita CPU y GPU deliberadamente. Cualquier medici\u00F3n de rendimiento hecha as\u00ED no es comparable.",
+      "Modulo": "",
+      "AccionId": "",
+      "AccionTexto": "",
+      "Etiqueta": "Atenci\u00F3n"
+    },
+    {
+      "Severity": "Warn",
+      "Area": "Bater\u00EDa",
+      "Message": "La bater\u00EDa tiene 19,7% de desgaste.",
+      "Action": "Es un desgaste esperable con el tiempo. Evita dejarla al 100% enchufada de forma permanente si quieres frenarlo.",
+      "Modulo": "",
+      "AccionId": "",
+      "AccionTexto": "",
+      "Etiqueta": "Atenci\u00F3n"
+    },
+    {
+      "Severity": "Ok",
+      "Area": "GPU",
+      "Message": "Equipo con gr\u00E1ficos h\u00EDbridos: Intel(R) Iris(R) Xe Graphics \u002B NVIDIA GeForce RTX 3050 Laptop GPU.",
+      "Action": "Si un juego usa la integrada por error, el rendimiento cae mucho. Revisa en Configuraci\u00F3n \u25B8 Pantalla \u25B8 Gr\u00E1ficos que la app correcta use \u00ABAlto rendimiento\u00BB.",
+      "Modulo": "",
+      "AccionId": "",
+      "AccionTexto": "",
+      "Etiqueta": "Correcto"
+    },
+    {
+      "Severity": "Ok",
+      "Area": "Almacenamiento",
+      "Message": "Los discos reportan salud correcta.",
+      "Action": "",
+      "Modulo": "",
+      "AccionId": "",
+      "AccionTexto": "",
+      "Etiqueta": "Correcto"
+    },
+    {
+      "Severity": "Bad",
+      "Area": "Estabilidad",
+      "Message": "4 reinicios inesperados (Kernel-Power 41) en 30 d\u00EDas.",
+      "Action": "Se concentran alrededor de las 19:00. Si no hay pantalla azul asociada, el sistema se cort\u00F3 sin alcanzar a registrar nada: apunta a alimentaci\u00F3n, bater\u00EDa, temperatura o memoria. Comprueba si coincide con el equipo en reposo o con tareas programadas.",
+      "Modulo": "",
+      "AccionId": "",
+      "AccionTexto": "",
+      "Etiqueta": "Cr\u00EDtico"
+    },
+    {
+      "Severity": "Warn",
+      "Area": "Estabilidad",
+      "Message": "1 volcados de memoria disponibles.",
+      "Action": "Anal\u00EDzalos con WinDbg o BlueScreenView: el driver culpable aparece nombrado ah\u00ED. Es la v\u00EDa m\u00E1s directa a la causa ra\u00EDz.",
+      "Modulo": "",
+      "AccionId": "",
+      "AccionTexto": "",
+      "Etiqueta": "Atenci\u00F3n"
+    },
+    {
+      "Severity": "Bad",
+      "Area": "Estabilidad",
+      "Message": "1 pantalla(s) azul(es) registrada(s) en 30 d\u00EDas.",
+      "Action": "Vale la pena comprobar la integridad de los archivos de sistema. Si sigue pasando despu\u00E9s de eso, el minidump correspondiente suele nombrar al driver responsable.",
+      "Modulo": "",
+      "AccionId": "sfc",
+      "AccionTexto": "",
+      "Etiqueta": "Cr\u00EDtico"
+    }
+  ],
+  "Sistema": [],
+  "Discos": [],
+  "Memoria": [],
+  "WiFi": [
+    {
+      "Clave": "Estado",
+      "Valor": "conectado"
+    },
+    {
+      "Clave": "SSID",
+      "Valor": "INACAP"
+    },
+    {
+      "Clave": "Banda",
+      "Valor": "5 GHz"
+    },
+    {
+      "Clave": "Canal",
+      "Valor": "149"
+    },
+    {
+      "Clave": "Tipo de radio",
+      "Valor": "802.11ax"
+    },
+    {
+      "Clave": "Autenticaci\u00F3n",
+      "Valor": "Abierta"
+    },
+    {
+      "Clave": "Recepci\u00F3n (Mbps)",
+      "Valor": "288"
+    },
+    {
+      "Clave": "Transmisi\u00F3n (Mbps)",
+      "Valor": "459"
+    },
+    {
+      "Clave": "Se\u00F1al",
+      "Valor": "83%"
+    },
+    {
+      "Clave": "RSSI aproximado",
+      "Valor": "-58 dBm"
+    }
+  ],
+  "Red": [
+    {
+      "Destino": "Router / gateway",
+      "Host": "10.26.48.1",
+      "Enviados": 20,
+      "Perdidos": 0,
+      "PerdidaPct": 0,
+      "Min": 3,
+      "Media": 11.8,
+      "Max": 31,
+      "Jitter": 8.3,
+      "Estado": "Ok"
+    },
+    {
+      "Destino": "Salida a internet",
+      "Host": "1.1.1.1",
+      "Enviados": 20,
+      "Perdidos": 0,
+      "PerdidaPct": 0,
+      "Min": 17,
+      "Media": 26,
+      "Max": 46,
+      "Jitter": 8.3,
+      "Estado": "Ok"
+    },
+    {
+      "Destino": "Riot LAN (Latam Norte)",
+      "Host": "la1.chat.si.riotgames.com",
+      "Enviados": 20,
+      "Perdidos": 0,
+      "PerdidaPct": 0,
+      "Min": 16,
+      "Media": 25,
+      "Max": 56,
+      "Jitter": 7,
+      "Estado": "Ok"
+    },
+    {
+      "Destino": "Riot LAS (Latam Sur)",
+      "Host": "la2.chat.si.riotgames.com",
+      "Enviados": 20,
+      "Perdidos": 0,
+      "PerdidaPct": 0,
+      "Min": 16,
+      "Media": 25,
+      "Max": 41,
+      "Jitter": 6.1,
+      "Estado": "Ok"
+    }
+  ],
+  "RendimientoResumen": [
+    {
+      "Clave": "CPU total",
+      "Valor": "23 %"
+    },
+    {
+      "Clave": "RAM en uso",
+      "Valor": "38,5 % (12,17 GB de 31,62 GB)"
+    },
+    {
+      "Clave": "Cola de disco",
+      "Valor": "0"
+    },
+    {
+      "Clave": "Tiempo de disco",
+      "Valor": "0 %"
+    },
+    {
+      "Clave": "Procesos activos",
+      "Valor": "102"
+    },
+    {
+      "Clave": "Muestreo",
+      "Valor": "5,2 s sobre 16 n\u00FAcleos l\u00F3gicos"
+    }
+  ],
+  "TopCpu": [
+    {
+      "Proceso": "msedgewebview2",
+      "Pid": 23804,
+      "CpuPct": 1.4,
+      "RamMb": 96.1
+    },
+    {
+      "Proceso": "dotnet",
+      "Pid": 21092,
+      "CpuPct": 1.3,
+      "RamMb": 135.2
+    },
+    {
+      "Proceso": "Spotify",
+      "Pid": 5968,
+      "CpuPct": 1.2,
+      "RamMb": 322.9
+    },
+    {
+      "Proceso": "msedgewebview2",
+      "Pid": 1700,
+      "CpuPct": 1.1,
+      "RamMb": 240.9
+    },
+    {
+      "Proceso": "Spotify",
+      "Pid": 5428,
+      "CpuPct": 0.3,
+      "RamMb": 66.8
+    },
+    {
+      "Proceso": "brave",
+      "Pid": 25616,
+      "CpuPct": 0.2,
+      "RamMb": 308.4
+    },
+    {
+      "Proceso": "explorer",
+      "Pid": 24388,
+      "CpuPct": 0.1,
+      "RamMb": 368.6
+    },
+    {
+      "Proceso": "Spotify",
+      "Pid": 22124,
+      "CpuPct": 0.1,
+      "RamMb": 358.7
+    },
+    {
+      "Proceso": "brave",
+      "Pid": 2936,
+      "CpuPct": 0.1,
+      "RamMb": 471
+    },
+    {
+      "Proceso": "HeadlessRunner",
+      "Pid": 27128,
+      "CpuPct": 0.1,
+      "RamMb": 49.4
+    }
+  ],
+  "TopRam": [
+    {
+      "Proceso": "brave",
+      "Pid": 2120,
+      "CpuPct": 0,
+      "RamMb": 536
+    },
+    {
+      "Proceso": "brave",
+      "Pid": 2936,
+      "CpuPct": 0.1,
+      "RamMb": 471
+    },
+    {
+      "Proceso": "claude",
+      "Pid": 25344,
+      "CpuPct": 0,
+      "RamMb": 438.4
+    },
+    {
+      "Proceso": "explorer",
+      "Pid": 24388,
+      "CpuPct": 0.1,
+      "RamMb": 368.6
+    },
+    {
+      "Proceso": "Spotify",
+      "Pid": 22124,
+      "CpuPct": 0.1,
+      "RamMb": 358.7
+    },
+    {
+      "Proceso": "brave",
+      "Pid": 5160,
+      "CpuPct": 0,
+      "RamMb": 325.5
+    },
+    {
+      "Proceso": "Spotify",
+      "Pid": 5968,
+      "CpuPct": 1.2,
+      "RamMb": 322.9
+    },
+    {
+      "Proceso": "dotnet",
+      "Pid": 3176,
+      "CpuPct": 0,
+      "RamMb": 318.5
+    },
+    {
+      "Proceso": "copilot",
+      "Pid": 22796,
+      "CpuPct": 0,
+      "RamMb": 314.6
+    },
+    {
+      "Proceso": "brave",
+      "Pid": 25616,
+      "CpuPct": 0.2,
+      "RamMb": 308.4
+    }
+  ],
+  "Termicas": [
+    {
+      "Clave": "Temperatura (ACPI)",
+      "Valor": "no publicada por el firmware"
+    },
+    {
+      "Clave": "Frecuencia actual",
+      "Valor": "2500 MHz"
+    },
+    {
+      "Clave": "Frecuencia nominal",
+      "Valor": "2500 MHz"
+    },
+    {
+      "Clave": "Rendimiento del procesador",
+      "Valor": "44 %"
+    },
+    {
+      "Clave": "Alimentaci\u00F3n",
+      "Valor": "Bater\u00EDa (5%)"
+    },
+    {
+      "Clave": "Plan de energ\u00EDa",
+      "Valor": "Equilibrado"
+    }
+  ],
+  "EventosResumen": [
+    {
+      "Id": 129,
+      "Descripcion": "Reinicio de la controladora de almacenamiento",
+      "Ocurrencias": 2008,
+      "Ultimo": "2026-08-13 10:32"
+    },
+    {
+      "Id": 19,
+      "Descripcion": "WHEA \u2014 error de hardware corregido",
+      "Ocurrencias": 147,
+      "Ultimo": "2026-08-12 18:59"
+    },
+    {
+      "Id": 18,
+      "Descripcion": "WHEA \u2014 error de hardware",
+      "Ocurrencias": 108,
+      "Ultimo": "2026-08-13 09:46"
+    },
+    {
+      "Id": 51,
+      "Descripcion": "Error de paginaci\u00F3n en disco",
+      "Ocurrencias": 19,
+      "Ultimo": "2026-08-07 03:17"
+    },
+    {
+      "Id": 41,
+      "Descripcion": "Kernel-Power 41 \u2014 el equipo se reinici\u00F3 sin apagarse correctamente",
+      "Ocurrencias": 4,
+      "Ultimo": "2026-08-08 18:10"
+    },
+    {
+      "Id": 6008,
+      "Descripcion": "Apagado inesperado",
+      "Ocurrencias": 4,
+      "Ultimo": "2026-08-08 18:10"
+    },
+    {
+      "Id": 1001,
+      "Descripcion": "BugCheck \u2014 pantalla azul registrada",
+      "Ocurrencias": 1,
+      "Ultimo": "2026-08-01 19:12"
+    }
+  ],
+  "EventosDetalle": [
+    {
+      "Fecha": "2026-08-13 10:32:06",
+      "Id": 129,
+      "Origen": "stornvme",
+      "Detalle": "Se emiti\u00F3 un restablecimiento de dispositivo, \\Device\\RaidPort1."
+    },
+    {
+      "Fecha": "2026-08-13 09:48:05",
+      "Id": 129,
+      "Origen": "stornvme",
+      "Detalle": "Se emiti\u00F3 un restablecimiento de dispositivo, \\Device\\RaidPort1."
+    },
+    {
+      "Fecha": "2026-08-13 09:47:55",
+      "Id": 129,
+      "Origen": "stornvme",
+      "Detalle": "Se emiti\u00F3 un restablecimiento de dispositivo, \\Device\\RaidPort1."
+    },
+    {
+      "Fecha": "2026-08-13 09:47:32",
+      "Id": 129,
+      "Origen": "stornvme",
+      "Detalle": "Se emiti\u00F3 un restablecimiento de dispositivo, \\Device\\RaidPort1."
+    },
+    {
+      "Fecha": "2026-08-13 09:46:52",
+      "Id": 18,
+      "Origen": "Microsoft-Windows-Kernel-Boot",
+      "Detalle": "Existen 0x1 opciones de arranque en este sistema."
+    },
+    {
+      "Fecha": "2026-08-12 18:59:59",
+      "Id": 19,
+      "Origen": "Microsoft-Windows-WindowsUpdateClient",
+      "Detalle": "Instalaci\u00F3n correcta: Windows instal\u00F3 correctamente la siguiente actualizaci\u00F3n: 9WZDNCRD29V9-MICROSOFT.MICROSOFTOFFICEHUB"
+    },
+    {
+      "Fecha": "2026-08-12 17:59:44",
+      "Id": 19,
+      "Origen": "Microsoft-Windows-WindowsUpdateClient",
+      "Detalle": "Instalaci\u00F3n correcta: Windows instal\u00F3 correctamente la siguiente actualizaci\u00F3n: Herramienta de eliminaci\u00F3n de software malintencionado de Windows x64,"
+    },
+    {
+      "Fecha": "2026-08-12 17:56:40",
+      "Id": 129,
+      "Origen": "stornvme",
+      "Detalle": "Se emiti\u00F3 un restablecimiento de dispositivo, \\Device\\RaidPort1."
+    },
+    {
+      "Fecha": "2026-08-12 17:45:11",
+      "Id": 129,
+      "Origen": "stornvme",
+      "Detalle": "Se emiti\u00F3 un restablecimiento de dispositivo, \\Device\\RaidPort1."
+    },
+    {
+      "Fecha": "2026-08-12 17:44:31",
+      "Id": 129,
+      "Origen": "stornvme",
+      "Detalle": "Se emiti\u00F3 un restablecimiento de dispositivo, \\Device\\RaidPort1."
+    },
+    {
+      "Fecha": "2026-08-12 17:44:18",
+      "Id": 129,
+      "Origen": "stornvme",
+      "Detalle": "Se emiti\u00F3 un restablecimiento de dispositivo, \\Device\\RaidPort1."
+    },
+    {
+      "Fecha": "2026-08-12 17:44:08",
+      "Id": 129,
+      "Origen": "stornvme",
+      "Detalle": "Se emiti\u00F3 un restablecimiento de dispositivo, \\Device\\RaidPort1."
+    },
+    {
+      "Fecha": "2026-08-12 17:43:58",
+      "Id": 129,
+      "Origen": "stornvme",
+      "Detalle": "Se emiti\u00F3 un restablecimiento de dispositivo, \\Device\\RaidPort1."
+    },
+    {
+      "Fecha": "2026-08-12 17:43:48",
+      "Id": 129,
+      "Origen": "stornvme",
+      "Detalle": "Se emiti\u00F3 un restablecimiento de dispositivo, \\Device\\RaidPort1."
+    },
+    {
+      "Fecha": "2026-08-12 17:43:38",
+      "Id": 129,
+      "Origen": "stornvme",
+      "Detalle": "Se emiti\u00F3 un restablecimiento de dispositivo, \\Device\\RaidPort1."
+    },
+    {
+      "Fecha": "2026-08-12 17:43:28",
+      "Id": 129,
+      "Origen": "stornvme",
+      "Detalle": "Se emiti\u00F3 un restablecimiento de dispositivo, \\Device\\RaidPort1."
+    },
+    {
+      "Fecha": "2026-08-12 17:42:40",
+      "Id": 129,
+      "Origen": "stornvme",
+      "Detalle": "Se emiti\u00F3 un restablecimiento de dispositivo, \\Device\\RaidPort1."
+    },
+    {
+      "Fecha": "2026-08-12 17:40:43",
+      "Id": 129,
+      "Origen": "stornvme",
+      "Detalle": "Se emiti\u00F3 un restablecimiento de dispositivo, \\Device\\RaidPort1."
+    },
+    {
+      "Fecha": "2026-08-12 17:40:31",
+      "Id": 129,
+      "Origen": "stornvme",
+      "Detalle": "Se emiti\u00F3 un restablecimiento de dispositivo, \\Device\\RaidPort1."
+    },
+    {
+      "Fecha": "2026-08-12 17:40:21",
+      "Id": 129,
+      "Origen": "stornvme",
+      "Detalle": "Se emiti\u00F3 un restablecimiento de dispositivo, \\Device\\RaidPort1."
+    },
+    {
+      "Fecha": "2026-08-12 17:40:20",
+      "Id": 19,
+      "Origen": "Microsoft-Windows-WindowsUpdateClient",
+      "Detalle": "Instalaci\u00F3n correcta: Windows instal\u00F3 correctamente la siguiente actualizaci\u00F3n: 9NRZT3Q9R3DL-Microsoft.WindowsAppRuntime.2"
+    },
+    {
+      "Fecha": "2026-08-12 17:40:20",
+      "Id": 19,
+      "Origen": "Microsoft-Windows-WindowsUpdateClient",
+      "Detalle": "Instalaci\u00F3n correcta: Windows instal\u00F3 correctamente la siguiente actualizaci\u00F3n: 9NRZT3Q9R3DL-Microsoft.WindowsAppRuntime.2"
+    },
+    {
+      "Fecha": "2026-08-12 17:40:06",
+      "Id": 129,
+      "Origen": "stornvme",
+      "Detalle": "Se emiti\u00F3 un restablecimiento de dispositivo, \\Device\\RaidPort1."
+    },
+    {
+      "Fecha": "2026-08-12 17:39:24",
+      "Id": 19,
+      "Origen": "Microsoft-Windows-WindowsUpdateClient",
+      "Detalle": "Instalaci\u00F3n correcta: Windows instal\u00F3 correctamente la siguiente actualizaci\u00F3n: Actualizaci\u00F3n de inteligencia de seguridad para Microsoft Defender Antivirus - KB2267602 (versi\u00F3n 1.457.130.0) - Canal actual (ampliado)"
+    },
+    {
+      "Fecha": "2026-08-12 17:38:27",
+      "Id": 18,
+      "Origen": "Microsoft-Windows-Kernel-Boot",
+      "Detalle": "Existen 0x1 opciones de arranque en este sistema."
+    },
+    {
+      "Fecha": "2026-08-12 00:54:00",
+      "Id": 19,
+      "Origen": "Microsoft-Windows-WindowsUpdateClient",
+      "Detalle": "Instalaci\u00F3n correcta: Windows instal\u00F3 correctamente la siguiente actualizaci\u00F3n: Actualizaci\u00F3n de inteligencia de seguridad para Microsoft Defender Antivirus - KB2267602 (versi\u00F3n 1.457.120.0) - Canal actual (ampliado)"
+    },
+    {
+      "Fecha": "2026-08-12 00:45:40",
+      "Id": 19,
+      "Origen": "Microsoft-Windows-WindowsUpdateClient",
+      "Detalle": "Instalaci\u00F3n correcta: Windows instal\u00F3 correctamente la siguiente actualizaci\u00F3n: 2026-08 .NET Framework Actualizaci\u00F3n de seguridad (KB5120710)"
+    },
+    {
+      "Fecha": "2026-08-12 00:45:40",
+      "Id": 19,
+      "Origen": "Microsoft-Windows-WindowsUpdateClient",
+      "Detalle": "Instalaci\u00F3n correcta: Windows instal\u00F3 correctamente la siguiente actualizaci\u00F3n: 2026-08 Actualizaci\u00F3n de seguridad (KB5121003) (26100.9168)"
+    },
+    {
+      "Fecha": "2026-08-12 00:43:35",
+      "Id": 129,
+      "Origen": "stornvme",
+      "Detalle": "Se emiti\u00F3 un restablecimiento de dispositivo, \\Device\\RaidPort1."
+    },
+    {
+      "Fecha": "2026-08-12 00:43:33",
+      "Id": 18,
+      "Origen": "TPM",
+      "Detalle": "Este evento desencadena que se ejecute la comprobaci\u00F3n de estado/aprovisionamiento del M\u00F3dulo de plataforma segura (TPM)."
+    }
+  ],
+  "Whea": [],
+  "Minidumps": [
+    {
+      "Archivo": "080126-24125-01.dmp",
+      "Fecha": "2026-08-01 19:12",
+      "Tamano": "7,7 MB"
+    }
+  ],
+  "Traceroute": [
+    {
+      "Hop": 1,
+      "Direccion": "10.26.48.1",
+      "Nombre": "",
+      "Media": "9,1 ms",
+      "Estado": "Ok"
+    },
+    {
+      "Hop": 2,
+      "Direccion": "192.168.252.2",
+      "Nombre": "",
+      "Media": "21,2 ms",
+      "Estado": "Ok"
+    },
+    {
+      "Hop": 3,
+      "Direccion": "192.168.253.1",
+      "Nombre": "",
+      "Media": "21 ms",
+      "Estado": "Ok"
+    },
+    {
+      "Hop": 4,
+      "Direccion": "10.69.100.2",
+      "Nombre": "",
+      "Media": "22,2 ms",
+      "Estado": "Ok"
+    },
+    {
+      "Hop": 5,
+      "Direccion": "216.241.31.65",
+      "Nombre": "",
+      "Media": "26,5 ms",
+      "Estado": "Ok"
+    },
+    {
+      "Hop": 6,
+      "Direccion": "10.62.0.245",
+      "Nombre": "PAL_LAB40618.inacap.cl",
+      "Media": "22,8 ms",
+      "Estado": "Ok"
+    },
+    {
+      "Hop": 7,
+      "Direccion": "216.241.0.2",
+      "Nombre": "static.ifxnw.cl",
+      "Media": "33,8 ms",
+      "Estado": "Ok"
+    },
+    {
+      "Hop": 8,
+      "Direccion": "45.68.16.227",
+      "Nombre": "Cloudflare-13335.SCL.PITChile.cl",
+      "Media": "30,2 ms",
+      "Estado": "Ok"
+    },
+    {
+      "Hop": 9,
+      "Direccion": "162.158.225.23",
+      "Nombre": "",
+      "Media": "41,2 ms",
+      "Estado": "Ok"
+    },
+    {
+      "Hop": 10,
+      "Direccion": "172.65.250.49",
+      "Nombre": "",
+      "Media": "26,1 ms",
+      "Estado": "Ok"
+    }
+  ],
+  "TracerouteDestino": "Riot LAN (Latam Norte)",
+  "Bateria": [
+    {
+      "Clave": "Capacidad de dise\u00F1o",
+      "Valor": "56,0 Wh"
+    },
+    {
+      "Clave": "Capacidad m\u00E1xima actual",
+      "Valor": "45,0 Wh"
+    },
+    {
+      "Clave": "Desgaste de la bater\u00EDa",
+      "Valor": "19,7 %"
+    },
+    {
+      "Clave": "Carga actual",
+      "Valor": "5,3 %"
+    }
+  ],
+  "Limpieza": [],
+  "EspacioLiberado": "",
+  "Drivers": [],
+  "Seguridad": [
+    {
+      "Componente": "Windows Defender",
+      "Estado": "Activo",
+      "Detalle": "Protecci\u00F3n en tiempo real activa",
+      "Nivel": "Ok"
+    },
+    {
+      "Componente": "Firewall de Windows",
+      "Estado": "No se pudo consultar",
+      "Detalle": "netsh no devolvi\u00F3 un resultado interpretable.",
+      "Nivel": "Warn"
+    },
+    {
+      "Componente": "BitLocker (C:)",
+      "Estado": "No disponible",
+      "Detalle": "BitLocker no est\u00E1 presente en esta edici\u00F3n de Windows, o requiere administrador para consultarse.",
+      "Nivel": "Warn"
+    },
+    {
+      "Componente": "TPM",
+      "Estado": "No disponible",
+      "Detalle": "",
+      "Nivel": "Warn"
+    },
+    {
+      "Componente": "Secure Boot",
+      "Estado": "Activado",
+      "Detalle": "",
+      "Nivel": "Ok"
+    },
+    {
+      "Componente": "Control de cuentas de usuario",
+      "Estado": "Activo",
+      "Detalle": "",
+      "Nivel": "Ok"
+    }
+  ],
+  "Gpus": [
+    {
+      "Nombre": "NVIDIA GeForce RTX 3050 Laptop GPU",
+      "Fabricante": "NVIDIA",
+      "DriverVersion": "32.0.16.1088",
+      "DriverFecha": "2026-07-22",
+      "MemoriaDedicada": "4,00 GB",
+      "UsoPct": ""
+    },
+    {
+      "Nombre": "Intel(R) Iris(R) Xe Graphics",
+      "Fabricante": "Intel Corporation",
+      "DriverVersion": "32.0.101.6790",
+      "DriverFecha": "2025-04-28",
+      "MemoriaDedicada": "2,00 GB",
+      "UsoPct": ""
+    }
+  ],
+  "Actualizaciones": [],
+  "DriversDisponibles": [],
+  "Almacenamiento": [
+    {
+      "Nombre": "WDC PC SN520 SDAPNUW-128G-1014",
+      "Tipo": "SSD",
+      "Salud": "Correcta",
+      "Firmware": "20110000",
+      "Horas": "n/d",
+      "Desgaste": "n/d",
+      "Temperatura": "n/d",
+      "Errores": "n/d",
+      "Estado": "Ok"
+    },
+    {
+      "Nombre": "NVMe INTEL SSDPEKNU512GZ",
+      "Tipo": "SSD",
+      "Salud": "Correcta",
+      "Firmware": "002C",
+      "Horas": "n/d",
+      "Desgaste": "n/d",
+      "Temperatura": "n/d",
+      "Errores": "n/d",
+      "Estado": "Ok"
+    }
+  ],
+  "Arranque": [],
+  "Servicios": [],
+  "Programas": [],
+  "RedesCercanas": [
+    {
+      "Ssid": "ADM-INACAP",
+      "Canal": 1,
+      "Banda": "2.4 GHz",
+      "Senal": "90 %",
+      "SenalPct": 90
+    },
+    {
+      "Ssid": "Invitados-INACAP",
+      "Canal": 1,
+      "Banda": "2.4 GHz",
+      "Senal": "90 %",
+      "SenalPct": 90
+    },
+    {
+      "Ssid": "Servicios",
+      "Canal": 1,
+      "Banda": "2.4 GHz",
+      "Senal": "90 %",
+      "SenalPct": 90
+    },
+    {
+      "Ssid": "INACAP",
+      "Canal": 1,
+      "Banda": "2.4 GHz",
+      "Senal": "89 %",
+      "SenalPct": 89
+    },
+    {
+      "Ssid": "Servicios",
+      "Canal": 120,
+      "Banda": "5 GHz",
+      "Senal": "87 %",
+      "SenalPct": 87
+    },
+    {
+      "Ssid": "INACAP",
+      "Canal": 120,
+      "Banda": "5 GHz",
+      "Senal": "87 %",
+      "SenalPct": 87
+    },
+    {
+      "Ssid": "INACAP",
+      "Canal": 11,
+      "Banda": "2.4 GHz",
+      "Senal": "86 %",
+      "SenalPct": 86
+    },
+    {
+      "Ssid": "Invitados-INACAP",
+      "Canal": 11,
+      "Banda": "2.4 GHz",
+      "Senal": "84 %",
+      "SenalPct": 84
+    },
+    {
+      "Ssid": "Servicios",
+      "Canal": 11,
+      "Banda": "2.4 GHz",
+      "Senal": "84 %",
+      "SenalPct": 84
+    },
+    {
+      "Ssid": "INACAP",
+      "Canal": 149,
+      "Banda": "5 GHz",
+      "Senal": "83 %",
+      "SenalPct": 83
+    },
+    {
+      "Ssid": "INACAP",
+      "Canal": 11,
+      "Banda": "2.4 GHz",
+      "Senal": "83 %",
+      "SenalPct": 83
+    },
+    {
+      "Ssid": "ADM-INACAP",
+      "Canal": 6,
+      "Banda": "2.4 GHz",
+      "Senal": "82 %",
+      "SenalPct": 82
+    },
+    {
+      "Ssid": "INACAP",
+      "Canal": 6,
+      "Banda": "2.4 GHz",
+      "Senal": "82 %",
+      "SenalPct": 82
+    },
+    {
+      "Ssid": "ADM-INACAP",
+      "Canal": 6,
+      "Banda": "2.4 GHz",
+      "Senal": "60 %",
+      "SenalPct": 60
+    },
+    {
+      "Ssid": "Servicios",
+      "Canal": 6,
+      "Banda": "2.4 GHz",
+      "Senal": "60 %",
+      "SenalPct": 60
+    },
+    {
+      "Ssid": "Invitados-INACAP",
+      "Canal": 6,
+      "Banda": "2.4 GHz",
+      "Senal": "57 %",
+      "SenalPct": 57
+    },
+    {
+      "Ssid": "INACAP",
+      "Canal": 6,
+      "Banda": "2.4 GHz",
+      "Senal": "57 %",
+      "SenalPct": 57
+    },
+    {
+      "Ssid": "Servicios",
+      "Canal": 112,
+      "Banda": "5 GHz",
+      "Senal": "38 %",
+      "SenalPct": 38
+    },
+    {
+      "Ssid": "INACAP",
+      "Canal": 112,
+      "Banda": "5 GHz",
+      "Senal": "38 %",
+      "SenalPct": 38
+    }
+  ],
+  "Puntaje": -1
+}
