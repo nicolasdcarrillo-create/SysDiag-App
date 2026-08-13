@@ -15,9 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="SysDiag">
-      <HintPath>..\..\bin\Debug\net8.0-windows\win-x64\SysDiag.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\..\SysDiag.csproj" />
   </ItemGroup>
 
   <ItemGroup>
