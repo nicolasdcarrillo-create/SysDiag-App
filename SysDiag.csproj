@@ -27,6 +27,7 @@
     <PublishReadyToRun>true</PublishReadyToRun>
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     <DebugType>none</DebugType>
+    <NoWarn>$(NoWarn);CA1416</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

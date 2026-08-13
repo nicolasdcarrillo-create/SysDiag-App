@@ -136,6 +136,10 @@ El gate real en CI hace esto:
 3. Se genera un ZIP con toda la carpeta publicada.
 4. Se suben ambos artefactos (`.zip` y `SysDiag.exe`) como artefactos de la corrida.
 
+Además, hay un workflow de release real para GitHub: `.github/workflows/release.yml`
+que se dispara con etiquetas tipo `vX.Y.Z` y crea un release con notas automáticas y
+la versión empaquetada lista para descargar.
+
 Esto hace que el pipeline sea útil como validación de release y no solo de build.
 
 ## CI (5.7)

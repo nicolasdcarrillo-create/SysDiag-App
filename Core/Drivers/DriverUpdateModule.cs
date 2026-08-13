@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.Versioning;
 using SysDiag.Models;
 
 namespace SysDiag.Core.Drivers;
@@ -19,6 +20,7 @@ namespace SysDiag.Core.Drivers;
 /// Se usa enlace tardío (COM por ProgID) para no arrastrar una referencia a
 /// WUApiLib, que complicaría la compilación en un solo ejecutable.
 /// </summary>
+[SupportedOSPlatform("windows")]
 public static class DriverUpdateModule
 {
     // Todo el trabajo COM pasa por este hilo. Los resultados de una búsqueda

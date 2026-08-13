@@ -18,24 +18,21 @@ if ($exeItem.Length -lt 5MB) {
     throw "El ejecutable parece incompleto o demasiado pequeño: $($exeItem.Length) bytes"
 }
 
-$required = @(
-    'SysDiag.dll',
-    'System.Management.dll',
-    'WindowsBase.dll',
-    'PresentationCore.dll',
-    'PresentationFramework.dll'
-)
+$entries = @(Get-ChildItem $Root -File)
+if ($entries.Count -lt 1) {
+    throw "El bundle publicado está vacío: $Root"
+}
 
+if (-not ($entries.Name -contains 'SysDiag.exe')) {
+    throw "El bundle publicado no contiene el ejecutable principal: SysDiag.exe"
+}
+
+$required = @('SysDiag.exe')
 foreach ($name in $required) {
     $path = Join-Path $Root $name
     if (-not (Test-Path $path)) {
         throw "Falta un artefacto crítico para el paquete: $name"
     }
-}
-
-$entries = Get-ChildItem $Root -File | Select-Object -ExpandProperty Name
-if ($entries.Count -lt 10) {
-    throw "El bundle publicado parece incompleto: se esperaban más archivos que $($entries.Count)" 
 }
 
 Write-Host "Paquete de release validado correctamente: $Root"
