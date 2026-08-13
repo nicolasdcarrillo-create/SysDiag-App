@@ -5,6 +5,7 @@ using System.Linq;
 using System.ComponentModel;
 using System.Net;
 using System.Text;
+using SysDiag.Core.Recommendations;
 using SysDiag.Models;
 
 namespace SysDiag.Core.Diagnostics;
@@ -47,6 +48,21 @@ public static class ReportBuilder
             }
             Section(sb, "Hallazgos", body.ToString(),
                 "Ordenados por severidad. Cada línea indica qué se detectó y qué hacer al respecto.");
+        }
+
+        var recomendaciones = r.Recomendaciones.Count > 0 ? r.Recomendaciones : RecommendationEngine.Generate(r);
+        if (recomendaciones.Count > 0)
+        {
+            var body = new StringBuilder();
+            foreach (var rec in recomendaciones)
+            {
+                body.Append("<div class=\"finding warn\">");
+                body.Append($"<div class=\"tag\">{E(rec.Prioridad)}</div>");
+                body.Append($"<div class=\"txt\"><b>{E(rec.Titulo)}</b><span>{E(rec.Descripcion)}</span></div>");
+                body.Append("</div>");
+            }
+            Section(sb, "Recomendaciones", body.ToString(),
+                "Sugerencias en prioridad para resolver o atenuar los problemas detectados.");
         }
 
         if (r.Sistema.Count > 0)

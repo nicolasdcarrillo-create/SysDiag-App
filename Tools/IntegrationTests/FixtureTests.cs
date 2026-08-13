@@ -4,6 +4,7 @@ using System.IO;
 using System.Text.Json;
 using SysDiag.Core;
 using SysDiag.Core.Diagnostics;
+using SysDiag.Core.Recommendations;
 using SysDiag.Models;
 using Xunit;
 
@@ -71,6 +72,28 @@ public class FixtureTests
         Assert.Equal("Router", previo.Red[0].Destino);
         Assert.Equal("Casa", previo.WiFi[0].Valor);
         Assert.Contains(previo.Hallazgos, h => h.Area == "Red" && h.Severity == Severity.Bad);
+    }
+
+    [Fact]
+    public void RecommendationEngine_GeneraRecomendacionesDesdeHallazgos()
+    {
+        var report = new DiagnosticReport();
+        report.Add(Severity.Bad, "Red", "latencia alta");
+        report.Arranque = new List<StartupRow>();
+        for (int i = 0; i < 25; i++)
+            report.Arranque.Add(new StartupRow { Nombre = $"App {i}", Origen = "Registro" });
+        report.RendimientoResumen = new List<KeyValueRow>
+        {
+            new("RAM en uso", "86 % (7 GB de 8 GB)"),
+            new("CPU total", "78 %")
+        };
+
+        var recomendaciones = RecommendationEngine.Generate(report);
+
+        Assert.NotEmpty(recomendaciones);
+        Assert.Contains(recomendaciones, r => r.Titulo.Contains("red", StringComparison.OrdinalIgnoreCase));
+        Assert.Contains(recomendaciones, r => r.Titulo.Contains("Windows", StringComparison.OrdinalIgnoreCase));
+        Assert.Contains(recomendaciones, r => r.Titulo.Contains("RAM", StringComparison.OrdinalIgnoreCase));
     }
 
     [Fact]

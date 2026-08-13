@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using SysDiag.Core;
+using SysDiag.Core.Recommendations;
 
 namespace SysDiag.Models;
 
@@ -71,7 +72,10 @@ public class DiagnosticReport
     public List<ServiceRow> Servicios { get; set; } = new();
     public List<ProgramRow> Programas { get; set; } = new();
     public List<WifiNetworkRow> RedesCercanas { get; set; } = new();
+    public List<Recommendation> Recomendaciones { get; set; } = new();
     public int Puntaje { get; set; } = -1;
+
+    public void ActualizarRecomendaciones() => Recomendaciones = RecommendationEngine.Generate(this);
 
     public bool TieneDatosRelevantes() =>
         Hallazgos.Count > 0 || Sistema.Count > 0 || Discos.Count > 0 || Memoria.Count > 0 ||
@@ -200,11 +204,15 @@ public class DiagnosticReport
         if (other.Servicios.Count > 0) Servicios = other.Servicios;
         if (other.Programas.Count > 0) Programas = other.Programas;
         if (other.RedesCercanas.Count > 0) RedesCercanas = other.RedesCercanas;
+        if (other.Recomendaciones.Count > 0) Recomendaciones = other.Recomendaciones;
 
         foreach (var hallazgo in other.Hallazgos)
         {
             if (!ContainsFinding(hallazgo))
                 Hallazgos.Add(hallazgo);
         }
+
+        if (Recomendaciones.Count == 0)
+            ActualizarRecomendaciones();
     }
 }
