@@ -33,11 +33,9 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.0.x'
+      - name: Build app for test references
+        run: dotnet build SysDiag.sln -c Debug --no-restore
 
       - name: Run integration tests
-        run: dotnet test "Tools/IntegrationTests/IntegrationTests.csproj" --verbosity minimal
+        run: dotnet test "Tools/IntegrationTests/IntegrationTests.csproj" -c Debug --no-build --verbosity minimal
 
