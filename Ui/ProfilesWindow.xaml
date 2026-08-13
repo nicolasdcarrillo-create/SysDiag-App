@@ -1,0 +1,62 @@
+﻿<Window x:Class="SysDiag.Ui.ProfilesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        SizeToContent="Height" Width="640" ResizeMode="NoResize" MaxHeight="700"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+  <Border Background="{StaticResource BSurface}" BorderBrush="{StaticResource BStroke}"
+          BorderThickness="1" CornerRadius="8" Padding="26,24,26,20">
+    <DockPanel LastChildFill="True">
+      <StackPanel DockPanel.Dock="Top" Margin="0,0,0,20">
+        <TextBlock Text="Perfiles" Style="{StaticResource H1}"/>
+        <TextBlock Style="{StaticResource Dim}" TextWrapping="Wrap" Margin="0,8,0,0"
+                   Text="Cada perfil cambia varios ajustes de energía y red a la vez. El estado anterior se guarda antes de aplicar y se revierte desde «Restaurar estado» — aplicar otro perfil también reemplaza al que estaba activo."/>
+      </StackPanel>
+
+      <Button DockPanel.Dock="Bottom" Content="Cerrar" Style="{StaticResource BtnGhost}" Margin="0,18,0,0"
+              HorizontalAlignment="Right" Padding="14,7" Click="Cerrar_Click"/>
+
+      <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,-14,0" Padding="0,0,14,0">
+      <StackPanel>
+
+      <Border Style="{StaticResource Card}" Margin="0,0,0,12">
+        <StackPanel>
+          <Grid>
+            <TextBlock Text="UNIVERSIDAD — SILENCIOSO" Style="{StaticResource SectionLabel}"/>
+            <Button Content="Aplicar" Style="{StaticResource BtnGhost}" Padding="14,6"
+                    HorizontalAlignment="Right" Click="Universidad_Click"/>
+          </Grid>
+          <TextBlock Style="{StaticResource Body}" TextWrapping="Wrap" Margin="0,4,0,0"
+                     Text="CPU topada a 60% de su frecuencia, Wi-Fi en ahorro de energía, efectos visuales reducidos. Prioriza que el ventilador no suene en clase por sobre la velocidad."/>
+        </StackPanel>
+      </Border>
+
+      <Border Style="{StaticResource Card}" Margin="0,0,0,12">
+        <StackPanel>
+          <Grid>
+            <TextBlock Text="TRABAJO — EQUILIBRADO" Style="{StaticResource SectionLabel}"/>
+            <Button Content="Aplicar" Style="{StaticResource BtnGhost}" Padding="14,6"
+                    HorizontalAlignment="Right" Click="Trabajo_Click"/>
+          </Grid>
+          <TextBlock Style="{StaticResource Body}" TextWrapping="Wrap" Margin="0,4,0,0"
+                     Text="CPU topada a 85%, DNS público para resolver más rápido al navegar. Sin cambios de energía agresivos: ni el silencio total de Universidad ni el consumo de Juego."/>
+        </StackPanel>
+      </Border>
+
+      <Border Style="{StaticResource Card}">
+        <StackPanel>
+          <Grid>
+            <TextBlock Text="JUEGO — RENDIMIENTO" Style="{StaticResource SectionLabel}"/>
+            <Button Content="Aplicar" Style="{StaticResource BtnPrimary}" Padding="14,6"
+                    HorizontalAlignment="Right" Click="Juego_Click"/>
+          </Grid>
+          <TextBlock Style="{StaticResource Body}" TextWrapping="Wrap" Margin="0,4,0,0"
+                     Text="CPU sin tope, plan de alto rendimiento, Wi-Fi en máximo rendimiento, Modo de juego de Windows activado. El ventilador va a sonar más — es la idea."/>
+        </StackPanel>
+      </Border>
+
+      </StackPanel>
+      </ScrollViewer>
+    </DockPanel>
+  </Border>
+</Window>

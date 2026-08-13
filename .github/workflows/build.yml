@@ -1,0 +1,43 @@
+name: Compilar y probar
+
+# Se ejecuta en una máquina Windows real que administra GitHub, no la mía
+# ni la de Kryo: es la primera verificación de este proyecto en un equipo
+# que nadie del proyecto tocó a mano.
+"on":
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Instalar .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restaurar dependencias
+        run: dotnet restore SysDiag.sln
+
+      - name: Compilar (Release)
+        run: dotnet build SysDiag.sln -c Release --no-restore
+
+      - name: Correr los tests
+        run: dotnet test SysDiag.Tests/SysDiag.Tests.csproj -c Release --no-build --verbosity normal
+
+      - name: Publicar el ejecutable autocontenido
+        run: dotnet publish SysDiag.csproj -c Release -o publish
+
+      - name: Subir el .exe como artefacto de esta corrida
+        uses: actions/upload-artifact@v4
+        with:
+          name: SysDiag-${{ github.sha }}
+          path: publish/SysDiag.exe
+          retention-days: 30

@@ -1,0 +1,96 @@
+﻿<Window x:Class="SysDiag.Ui.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        SizeToContent="Height" Width="560" ResizeMode="NoResize" MaxHeight="700"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+  <Window.Resources>
+    <Style x:Key="Campo" TargetType="TextBox">
+      <Setter Property="Width" Value="70"/>
+      <Setter Property="Height" Value="34"/>
+      <Setter Property="Background" Value="{StaticResource BSurfaceAlt}"/>
+      <Setter Property="Foreground" Value="{StaticResource BText}"/>
+      <Setter Property="FontFamily" Value="{StaticResource FMono}"/>
+      <Setter Property="FontSize" Value="13"/>
+      <Setter Property="TextAlignment" Value="Center"/>
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+      <Setter Property="BorderBrush" Value="{StaticResource BStroke}"/>
+      <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+    <Style x:Key="Fila" TargetType="Grid">
+      <Setter Property="Margin" Value="0,0,0,16"/>
+    </Style>
+  </Window.Resources>
+
+  <Border Background="{StaticResource BSurface}" BorderBrush="{StaticResource BStroke}"
+          BorderThickness="1" CornerRadius="8" Padding="26,24,26,20">
+    <DockPanel LastChildFill="True">
+      <StackPanel DockPanel.Dock="Top" Margin="0,0,0,20">
+        <TextBlock Text="Ajustes" Style="{StaticResource H1}"/>
+        <TextBlock Style="{StaticResource Dim}" TextWrapping="Wrap" Margin="0,8,0,0"
+                   Text="Se aplican de inmediato y quedan guardados para la próxima vez que abras SysDiag."/>
+      </StackPanel>
+
+      <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,18,0,0">
+        <Button Content="Restablecer por defecto" Style="{StaticResource BtnGhost}" Margin="0,0,8,0" Click="Restablecer_Click"/>
+        <Button Content="Cerrar" Style="{StaticResource BtnGhost}" Margin="0,0,8,0" Click="Cerrar_Click"/>
+        <Button Content="Guardar" Style="{StaticResource BtnPrimary}" Click="Guardar_Click" IsDefault="True"/>
+      </StackPanel>
+
+      <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,-14,0" Padding="0,0,14,0">
+      <StackPanel>
+
+        <Grid Style="{StaticResource Fila}">
+          <StackPanel HorizontalAlignment="Left">
+            <TextBlock Text="Muestreo de CPU" Style="{StaticResource Body}" FontWeight="SemiBold"/>
+            <TextBlock Style="{StaticResource Dim}" Text="Segundos midiendo antes de calcular el uso real por proceso."/>
+          </StackPanel>
+          <TextBox x:Name="TxtSample" Style="{StaticResource Campo}" HorizontalAlignment="Right"/>
+        </Grid>
+
+        <Grid Style="{StaticResource Fila}">
+          <StackPanel HorizontalAlignment="Left">
+            <TextBlock Text="Pings por destino" Style="{StaticResource Body}" FontWeight="SemiBold"/>
+            <TextBlock Style="{StaticResource Dim}" Text="Más pings, medición de jitter más estable, pero más lento."/>
+          </StackPanel>
+          <TextBox x:Name="TxtPing" Style="{StaticResource Campo}" HorizontalAlignment="Right"/>
+        </Grid>
+
+        <Grid Style="{StaticResource Fila}">
+          <StackPanel HorizontalAlignment="Left">
+            <TextBlock Text="Ventana de eventos (días)" Style="{StaticResource Body}" FontWeight="SemiBold"/>
+            <TextBlock Style="{StaticResource Dim}" Text="Cuántos días atrás revisa Estabilidad en el registro de Windows."/>
+          </StackPanel>
+          <TextBox x:Name="TxtEventDays" Style="{StaticResource Campo}" HorizontalAlignment="Right"/>
+        </Grid>
+
+        <Grid Style="{StaticResource Fila}">
+          <StackPanel HorizontalAlignment="Left">
+            <TextBlock Text="Ventana de errores WHEA (días)" Style="{StaticResource Body}" FontWeight="SemiBold"/>
+            <TextBlock Style="{StaticResource Dim}" Text="Más corta que la anterior a propósito: hardware fallando ahora importa más que hace un mes."/>
+          </StackPanel>
+          <TextBox x:Name="TxtWheaDays" Style="{StaticResource Campo}" HorizontalAlignment="Right"/>
+        </Grid>
+
+        <Grid Style="{StaticResource Fila}">
+          <StackPanel HorizontalAlignment="Left">
+            <TextBlock Text="Historial a conservar" Style="{StaticResource Body}" FontWeight="SemiBold"/>
+            <TextBlock Style="{StaticResource Dim}" Text="Diagnósticos guardados antes de descartar los más viejos."/>
+          </StackPanel>
+          <TextBox x:Name="TxtHistorial" Style="{StaticResource Campo}" HorizontalAlignment="Right"/>
+        </Grid>
+
+        <Grid Style="{StaticResource Fila}" Margin="0,0,0,0">
+          <StackPanel HorizontalAlignment="Left">
+            <TextBlock Text="Registros a conservar" Style="{StaticResource Body}" FontWeight="SemiBold"/>
+            <TextBlock Style="{StaticResource Dim}" TextWrapping="Wrap" MaxWidth="330"
+                       Text="Este cambia recién en el próximo arranque, no en esta sesión."/>
+          </StackPanel>
+          <TextBox x:Name="TxtLogs" Style="{StaticResource Campo}" HorizontalAlignment="Right"/>
+        </Grid>
+
+      </StackPanel>
+      </ScrollViewer>
+    </DockPanel>
+  </Border>
+</Window>

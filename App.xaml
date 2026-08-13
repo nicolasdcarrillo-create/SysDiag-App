@@ -1,0 +1,19 @@
+﻿<Application x:Class="SysDiag.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="clr-namespace:SysDiag.Ui"
+             StartupUri="Ui/MainWindow.xaml">
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Ui/Theme.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+
+      <ui:BoolToVisibility x:Key="BoolVis"/>
+      <ui:BoolToVisibilityInverse x:Key="BoolVisNot"/>
+      <ui:SeverityToBrush x:Key="SevBrush"/>
+      <ui:SeverityToWash x:Key="SevWash"/>
+      <ui:ScoreArcConverter x:Key="ScoreArc"/>
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>
