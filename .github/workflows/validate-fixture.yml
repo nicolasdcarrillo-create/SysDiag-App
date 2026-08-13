@@ -33,6 +33,9 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
+      - name: Restore dependencies
+        run: dotnet restore SysDiag.sln
+
       - name: Build app for test references
         run: dotnet build SysDiag.sln -c Debug --no-restore
 
