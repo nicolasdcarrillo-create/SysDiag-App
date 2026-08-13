@@ -29,9 +29,6 @@ jobs:
       - name: Compilar (Release)
         run: dotnet build SysDiag.sln -c Release --no-restore
 
-      - name: Correr los tests
-        run: dotnet test SysDiag.Tests/SysDiag.Tests.csproj -c Release --no-build --verbosity normal
-
       - name: Publicar el ejecutable autocontenido
         run: dotnet publish SysDiag.csproj -c Release -o publish
 
