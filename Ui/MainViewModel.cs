@@ -159,6 +159,10 @@ public class MainViewModel : INotifyPropertyChanged
     private bool _hayDatos;
     public bool HayDatos { get => _hayDatos; set => Set(ref _hayDatos, value); }
 
+    public string TextoVacio => AppEnv.IsAdmin
+        ? "Elige un módulo del panel izquierdo. Si es la primera vez, «Diagnóstico completo» recopila red, rendimiento, térmicas, almacenamiento y estabilidad en una sola pasada."
+        : "Todavía no hay mediciones útiles. Algunos módulos requieren permisos de administrador para consultar WMI, el registro y los contadores del sistema. Reinicia la app como administrador para completar el diagnóstico.";
+
     private Finding _hallazgoSel;
     public Finding HallazgoSeleccionado
     {
@@ -375,14 +379,20 @@ public class MainViewModel : INotifyPropertyChanged
         BuildFindings();
         BuildTables();
 
-        HayDatos = Report.Sistema.Count > 0 || Report.Hallazgos.Count > 0;
+        HayDatos = Report.TieneDatosRelevantes();
         BuildSugerencia();
 
         int criticos = Report.Hallazgos.Count(f => f.Severity == Severity.Bad);
         int avisos = Report.Hallazgos.Count(f => f.Severity == Severity.Warn);
-        Subtitulo = Report.Hallazgos.Count == 0
-            ? $"Finalizado a las {DateTime.Now:HH:mm}. Sin hallazgos."
-            : $"{criticos} crítico(s) · {avisos} aviso(s) · finalizado a las {DateTime.Now:HH:mm}";
+
+        if (Report.Hallazgos.Count == 0)
+        {
+            Subtitulo = $"Finalizado a las {DateTime.Now:HH:mm}. {Report.ResumenEstado()}";
+        }
+        else
+        {
+            Subtitulo = $"{criticos} crítico(s) · {avisos} aviso(s) · finalizado a las {DateTime.Now:HH:mm}";
+        }
     }
 
     private void BuildCharts()
@@ -428,12 +438,7 @@ public class MainViewModel : INotifyPropertyChanged
             return;
         }
 
-        var faltantes = new List<string>();
-        if (Report.Red.Count == 0) faltantes.Add("Red y latencia");
-        if (Report.RendimientoResumen.Count == 0) faltantes.Add("Rendimiento");
-        if (Report.Termicas.Count == 0) faltantes.Add("Térmicas y energía");
-        if (Report.Almacenamiento.Count == 0) faltantes.Add("Almacenamiento");
-        if (Report.EventosResumen.Count == 0 && Report.Whea.Count == 0) faltantes.Add("Estabilidad");
+        var faltantes = Report.ModulosFaltantes();
 
         if (faltantes.Count > 0)
         {

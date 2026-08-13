@@ -10,6 +10,24 @@ namespace SysDiag.Core;
 /// </summary>
 public static class Wmi
 {
+    public static bool LastAccessDenied { get; private set; }
+
+    public static void ResetAccessState() => LastAccessDenied = false;
+
+    public static void MarcarAccesoDenegado() => LastAccessDenied = true;
+
+    public static bool EsAccesoDenegado(Exception ex)
+    {
+        if (ex is UnauthorizedAccessException)
+            return true;
+
+        var texto = ex?.ToString() ?? "";
+        return texto.Contains("Access denied", StringComparison.OrdinalIgnoreCase)
+            || texto.Contains("not authorized", StringComparison.OrdinalIgnoreCase)
+            || texto.Contains("permission", StringComparison.OrdinalIgnoreCase)
+            || texto.Contains("denied", StringComparison.OrdinalIgnoreCase);
+    }
+
     public static IEnumerable<ManagementObject> Query(string query, string scope = null)
     {
         var results = new List<ManagementObject>();
@@ -23,6 +41,7 @@ public static class Wmi
         }
         catch (Exception ex)
         {
+            if (EsAccesoDenegado(ex)) MarcarAccesoDenegado();
             AppLog.Write($"Consulta WMI fallida ({query}): {ex.Message}", "WARN");
         }
         return results;

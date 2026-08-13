@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Runtime.Versioning;
 using System.Threading;
 
 namespace SysDiag.Core;
@@ -14,6 +15,7 @@ namespace SysDiag.Core;
 /// falla. Manteniendo un solo hilo STA propietario, buscar e instalar comparten
 /// contexto y los punteros siguen siendo válidos entre una llamada y otra.
 /// </summary>
+[SupportedOSPlatform("windows")]
 public sealed class ComWorker : IDisposable
 {
     private readonly BlockingCollection<Action> _cola = new();

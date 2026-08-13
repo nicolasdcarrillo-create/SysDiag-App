@@ -13,6 +13,7 @@ public static class ReportBuilder
 {
     public static string Build(DiagnosticReport r)
     {
+        Directory.CreateDirectory(AppEnv.OutputPath);
         string file = Path.Combine(AppEnv.OutputPath, $"informe_{r.Inicio:yyyyMMdd_HHmm}.html");
         var sb = new StringBuilder();
 
@@ -140,6 +141,11 @@ public static class ReportBuilder
         if (r.Gpus.Count > 0)
             Section(sb, "GPU", Table(r.Gpus),
                 "El uso solo se mide cuando hay una única GPU activa: con gráficos híbridos no hay forma confiable de saber a cuál de las dos atribuírselo, así que se deja vacío en vez de adivinar.");
+
+        if (!r.TieneDatosRelevantes())
+            Section(sb, "Diagnóstico incompleto",
+                $"<p>{E(r.ResumenEstado())}</p>",
+                "Esto suele pasar cuando el equipo no expone WMI o el usuario no tiene permisos de administrador para consultar algunos módulos.");
 
         sb.AppendLine($"<footer>Generado por SysDiag v{AppEnv.Version} · registro completo en {E(AppLog.File)}</footer>");
         sb.AppendLine("</div></body></html>");

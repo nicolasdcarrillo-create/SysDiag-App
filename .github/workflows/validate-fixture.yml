@@ -33,6 +33,11 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
       - name: Run integration tests
-        run: dotnet test Tools/IntegrationTests/IntegrationTests.csproj --no-build -v minimal
+        run: dotnet test "Tools/IntegrationTests/IntegrationTests.csproj" --verbosity minimal
 

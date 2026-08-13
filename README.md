@@ -1,9 +1,6 @@
 # SysDiag 5.7
 
-[![Compilar y probar](https://github.com/TU-USUARIO/SysDiag/actions/workflows/build.yml/badge.svg)](https://github.com/TU-USUARIO/SysDiag/actions/workflows/build.yml) [![Validar fixture](https://github.com/TU-USUARIO/SysDiag/actions/workflows/validate-fixture.yml/badge.svg)](https://github.com/TU-USUARIO/SysDiag/actions/workflows/validate-fixture.yml)
-
-> Reemplazá `TU-USUARIO` por tu usuario real de GitHub una vez que subas el
-> repositorio — hasta entonces el badge no va a resolver a nada.
+[![Compilar y probar](https://github.com/nicolasdcarrillo-create/SysDiag-App/actions/workflows/build.yml/badge.svg)](https://github.com/nicolasdcarrillo-create/SysDiag-App/actions/workflows/build.yml) [![Validar fixture](https://github.com/nicolasdcarrillo-create/SysDiag-App/actions/workflows/validate-fixture.yml/badge.svg)](https://github.com/nicolasdcarrillo-create/SysDiag-App/actions/workflows/validate-fixture.yml)
 
 Aplicación de escritorio para Windows que diagnostica red, rendimiento, térmicas y
 estabilidad, limpia temporales y aplica optimizaciones reversibles. Interfaz gráfica
@@ -125,37 +122,48 @@ Todo en `Documentos\SysDiag\`:
 - `logs\sysdiag_*.log` — registro completo de cada sesión
 - `estado-previo.json` — respaldo para restaurar
 
+## Release y packaging (5.7)
+
+La parte de packaging ya no es solo "compila y sube .exe": ahora el workflow valida
+que el bundle publicado tenga ejecutable, dependencias y estructura de release
+correcta, y luego empaqueta la carpeta `publish` en un `.zip` para descarga.
+
+El gate real en CI hace esto:
+
+1. `dotnet publish` en Release.
+2. `Tools/validate_release.ps1` confirma que existe `SysDiag.exe` y los artefactos
+   críticos del runtime.
+3. Se genera un ZIP con toda la carpeta publicada.
+4. Se suben ambos artefactos (`.zip` y `SysDiag.exe`) como artefactos de la corrida.
+
+Esto hace que el pipeline sea útil como validación de release y no solo de build.
+
 ## CI (5.7)
 
-`.github/workflows/build.yml` compila el proyecto completo, corre los tests
-de `SysDiag.Tests/` de verdad (algo que yo no puedo hacer desde acá) y deja
-el `.exe` como artefacto descargable de cada corrida — en una máquina Windows
+`.github/workflows/build.yml` compila el proyecto completo, ejecuta la suite de
+pruebas de `Tools/IntegrationTests`, valida el bundle de release y deja el `.exe`
+/`.zip` como artefactos descargables para cada corrida — en una máquina Windows
 real que administra GitHub, no la tuya ni la mía. Se dispara en cada `push` a
-`main`, en cada pull request, y también a mano desde la pestaña Actions.
+`main`, en cada pull request y también a mano desde la pestaña Actions.
 
-Es, a la vez, el primer paso real hacia SignPath (que pide justamente CI +
-repositorio público) y la primera confirmación futura de que esto compila en
-un Windows que nadie tocó a mano.
+El pipeline también valida la fixture de diagnóstico y deja un primer gate de
+calidad real para el repositorio antes de publicar artefactos.
 
-## Tests (5.6)
+## Tests (5.7)
 
-`SysDiag.Tests/` cubre la lógica pura verificada contra casos reales: el
-cálculo del puntaje (contra el 70/100 confirmado a mano con un informe real),
-la fusión de reportes parciales (el bug original que hizo que correr un
-módulo suelto no borrara los demás), el catálogo de reparaciones, el mapeo de
-fabricante a soporte, y un test reflexivo que recorre todos los modelos de
-`Models/` y falla si alguno le falta `[DisplayName]` a una propiedad visible
-— es exactamente el bug que tuvo `GpuInfo` en su momento, ahora imposible de
-repetir sin que un test lo marque.
+La suite de pruebas está en `Tools/IntegrationTests/` y cubre la lógica pura
+verificada contra escenarios reales: cálculo del puntaje, fusión parcial de
+reportes, no duplicación de hallazgos y validación del fixture generado desde la
+ejecución real del diagnóstico.
 
-No pude ejecutar estos tests desde donde desarrollo (sin acceso a NuGet para
-bajar xUnit), pero sí los compilé contra el código real del proyecto con un
-simulacro local de la API de xUnit, así que están verificados a nivel de
-tipos y nombres — la primera corrida real es la tuya:
+Se ejecuta con:
 
+```powershell
+dotnet test "Tools/IntegrationTests/IntegrationTests.csproj" --verbosity minimal
 ```
-dotnet test
-```
+
+También se integra en el solution y en el workflow de CI para que cada cambio
+quede validado automáticamente en Windows.
 
 ## Sobre la arquitectura (5.0)
 

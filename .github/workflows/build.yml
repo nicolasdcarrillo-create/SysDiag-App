@@ -29,12 +29,28 @@ jobs:
       - name: Compilar (Release)
         run: dotnet build SysDiag.sln -c Release --no-restore
 
+      - name: Ejecutar la suite de pruebas
+        run: dotnet test SysDiag.sln -c Release --no-build --verbosity minimal
+
       - name: Publicar el ejecutable autocontenido
         run: dotnet publish SysDiag.csproj -c Release -o publish
 
-      - name: Subir el .exe como artefacto de esta corrida
+      - name: Validar el paquete publicado
+        shell: pwsh
+        run: |
+          .\Tools\validate_release.ps1 -Root .\publish
+
+      - name: Empaquetar el release para descarga
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path release | Out-Null
+          Compress-Archive -Path .\publish\* -DestinationPath .\release\SysDiag-${{ github.sha }}.zip -Force
+
+      - name: Subir el artefacto de release
         uses: actions/upload-artifact@v4
         with:
           name: SysDiag-${{ github.sha }}
-          path: publish/SysDiag.exe
+          path: |
+            release/SysDiag-${{ github.sha }}.zip
+            publish/SysDiag.exe
           retention-days: 30

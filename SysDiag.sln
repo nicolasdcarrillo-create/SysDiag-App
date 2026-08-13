@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysDiag", "SysDiag.csproj", "{3B835285-23AE-4C14-9C5F-0CCD747BC55D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{359D76A8-98DD-418E-899D-8AC9951DE4FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "Tools\IntegrationTests\IntegrationTests.csproj", "{BA7996AE-6362-4EBA-9BBD-1D1C456F2662}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,12 @@ Global
 		{3B835285-23AE-4C14-9C5F-0CCD747BC55D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B835285-23AE-4C14-9C5F-0CCD747BC55D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B835285-23AE-4C14-9C5F-0CCD747BC55D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA7996AE-6362-4EBA-9BBD-1D1C456F2662}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA7996AE-6362-4EBA-9BBD-1D1C456F2662}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA7996AE-6362-4EBA-9BBD-1D1C456F2662}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA7996AE-6362-4EBA-9BBD-1D1C456F2662}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BA7996AE-6362-4EBA-9BBD-1D1C456F2662} = {359D76A8-98DD-418E-899D-8AC9951DE4FD}
 	EndGlobalSection
 EndGlobal

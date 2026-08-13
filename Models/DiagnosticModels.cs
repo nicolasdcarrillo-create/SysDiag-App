@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using SysDiag.Core;
 
 namespace SysDiag.Models;
 
@@ -71,17 +73,100 @@ public class DiagnosticReport
     public List<WifiNetworkRow> RedesCercanas { get; set; } = new();
     public int Puntaje { get; set; } = -1;
 
+    public bool TieneDatosRelevantes() =>
+        Hallazgos.Count > 0 || Sistema.Count > 0 || Discos.Count > 0 || Memoria.Count > 0 ||
+        WiFi.Count > 0 || Red.Count > 0 || RendimientoResumen.Count > 0 || TopCpu.Count > 0 ||
+        TopRam.Count > 0 || Termicas.Count > 0 || EventosResumen.Count > 0 || EventosDetalle.Count > 0 ||
+        Whea.Count > 0 || Minidumps.Count > 0 || Traceroute.Count > 0 || Bateria.Count > 0 ||
+        Limpieza.Count > 0 || Drivers.Count > 0 || Seguridad.Count > 0 || Gpus.Count > 0 ||
+        Actualizaciones.Count > 0 || DriversDisponibles.Count > 0 || Almacenamiento.Count > 0 ||
+        Arranque.Count > 0 || Servicios.Count > 0 || Programas.Count > 0 || RedesCercanas.Count > 0;
+
+    public string ResumenEstado()
+    {
+        if (TieneDatosRelevantes())
+            return Hallazgos.Count == 0
+                ? "La comprobación se completó, pero no se detectaron problemas relevantes en los datos disponibles."
+                : "La comprobación se completó con los datos disponibles del equipo.";
+
+        var faltantes = ModulosFaltantes();
+        var lista = faltantes.Count > 0 ? $" Módulos pendientes: {string.Join(", ", faltantes.Take(3))}." : "";
+        var bloqueoWmi = Wmi.LastAccessDenied
+            ? " El sistema respondió con acceso denegado a WMI o al registro; repetir como administrador suele completar los módulos faltantes."
+            : "";
+
+        if (!AppEnv.IsAdmin)
+            return $"No se obtuvieron datos útiles. Repite la comprobación como administrador para completar WMI, registro y contadores del sistema.{lista}{bloqueoWmi}";
+
+        return $"No se obtuvieron datos útiles. Es posible que el equipo no exponga esa información o que la consulta fallara en ese momento.{lista}{bloqueoWmi}";
+    }
+
+    public List<string> ModulosConDatos()
+    {
+        var modulos = new List<string>();
+        if (Red.Count > 0) modulos.Add("Red y latencia");
+        if (RendimientoResumen.Count > 0 || TopCpu.Count > 0 || TopRam.Count > 0) modulos.Add("Rendimiento");
+        if (Termicas.Count > 0 || Bateria.Count > 0 || Gpus.Count > 0) modulos.Add("Térmicas y energía");
+        if (Almacenamiento.Count > 0 || Discos.Count > 0 || Memoria.Count > 0) modulos.Add("Almacenamiento");
+        if (EventosResumen.Count > 0 || Whea.Count > 0 || Minidumps.Count > 0 || EventosDetalle.Count > 0) modulos.Add("Estabilidad");
+        if (Seguridad.Count > 0) modulos.Add("Seguridad");
+        if (Drivers.Count > 0 || DriversDisponibles.Count > 0) modulos.Add("Drivers");
+        if (Actualizaciones.Count > 0) modulos.Add("Actualizaciones");
+        if (Limpieza.Count > 0) modulos.Add("Limpieza");
+        if (Arranque.Count > 0 || Servicios.Count > 0 || Programas.Count > 0) modulos.Add("Arranque y software");
+        if (Sistema.Count > 0) modulos.Add("Equipo");
+        return modulos;
+    }
+
+    public List<string> ModulosFaltantes()
+    {
+        var todos = new List<string>
+        {
+            "Red y latencia",
+            "Rendimiento",
+            "Térmicas y energía",
+            "Almacenamiento",
+            "Estabilidad",
+            "Seguridad",
+            "Drivers",
+            "Actualizaciones",
+            "Limpieza",
+            "Arranque y software"
+        };
+
+        var existentes = new HashSet<string>(ModulosConDatos(), StringComparer.OrdinalIgnoreCase);
+        return todos.Where(m => !existentes.Contains(m)).ToList();
+    }
+
     public void Add(Severity severity, string area, string message, string action = "",
                     string accionId = "")
     {
-        Hallazgos.Add(new Finding
+        var finding = new Finding
         {
             Severity = severity,
             Area = area,
             Message = message,
             Action = action,
             AccionId = accionId
-        });
+        };
+
+        if (!ContainsFinding(finding))
+            Hallazgos.Add(finding);
+    }
+
+    private static bool SameFinding(Finding a, Finding b)
+    {
+        if (ReferenceEquals(a, b)) return true;
+        return string.Equals(a.Area, b.Area, StringComparison.OrdinalIgnoreCase)
+            && a.Severity == b.Severity
+            && string.Equals(a.Message, b.Message, StringComparison.OrdinalIgnoreCase)
+            && string.Equals(a.Modulo, b.Modulo, StringComparison.OrdinalIgnoreCase)
+            && string.Equals(a.AccionId, b.AccionId, StringComparison.OrdinalIgnoreCase);
+    }
+
+    private bool ContainsFinding(Finding candidate)
+    {
+        return Hallazgos.Any(existing => SameFinding(existing, candidate));
     }
 
     /// <summary>
@@ -115,6 +200,11 @@ public class DiagnosticReport
         if (other.Servicios.Count > 0) Servicios = other.Servicios;
         if (other.Programas.Count > 0) Programas = other.Programas;
         if (other.RedesCercanas.Count > 0) RedesCercanas = other.RedesCercanas;
-        Hallazgos.AddRange(other.Hallazgos);
+
+        foreach (var hallazgo in other.Hallazgos)
+        {
+            if (!ContainsFinding(hallazgo))
+                Hallazgos.Add(hallazgo);
+        }
     }
 }

@@ -35,6 +35,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Tools\**\*.cs" />
+    <Page Remove="Tools\**\*.xaml" />
+    <None Remove="Tools\**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
     <!-- Se incluyen aparte de ApplicationIcon (que solo cubre el .exe) para
          poder referenciarlos también desde XAML. -->
     <Resource Include="Resources\Icons\AppIcon.ico" />

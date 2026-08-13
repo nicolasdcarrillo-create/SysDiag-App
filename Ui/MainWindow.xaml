@@ -404,7 +404,7 @@
                        HorizontalAlignment="Center"/>
             <TextBlock Style="{StaticResource Dim}" Margin="0,8,0,0" TextAlignment="Center"
                        TextWrapping="Wrap"
-                       Text="Elige un módulo en el panel de la izquierda. Si es la primera vez, «Diagnóstico completo» cubre red, rendimiento, térmicas, almacenamiento y estabilidad en una pasada."/>
+                       Text="{Binding TextoVacio}"/>
           </StackPanel>
         </Grid>
 
