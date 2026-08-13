@@ -177,8 +177,6 @@ public static class Exporter
                     if (!doc.RootElement.TryGetProperty("Puntaje", out var p)) continue;
 
                     int puntaje = p.GetInt32();
-                    if (puntaje < 0) continue;
-
                     DateTime fecha = doc.RootElement.TryGetProperty("Inicio", out var i)
                         && i.TryGetDateTime(out var d) ? d : f.LastWriteTime;
 

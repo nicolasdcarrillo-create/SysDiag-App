@@ -98,7 +98,7 @@ public class DiagnosticReport
         if (!AppEnv.IsAdmin)
             return $"No se obtuvieron datos útiles. Repite la comprobación como administrador para completar WMI, registro y contadores del sistema.{lista}{bloqueoWmi}";
 
-        return $"No se obtuvieron datos útiles. Es posible que el equipo no exponga esa información o que la consulta fallara en ese momento.{lista}{bloqueoWmi}";
+        return $"No se obtuvieron datos útiles. Si la comprobación se repite como administrador, normalmente se completan WMI, registro y contadores del sistema.{lista}{bloqueoWmi}";
     }
 
     public List<string> ModulosConDatos()
